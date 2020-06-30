@@ -16,15 +16,15 @@ yarn start
 ## TODO
 
  - [x] Scaffold basic UI
-  - [x] cra init
-  - [x] remove some cra kruft
-  - [x] contact sidemenu with animation
-  - [x] message list that scrolls to bottom
-  - [x] config screens as modals
+   - [x] cra init
+   - [x] remove some cra kruft
+   - [x] contact sidemenu with animation
+   - [x] message list that scrolls to bottom
+   - [x] config screens as modals
  - [ ] Mock up API
-  - [ ] mock GraphQL back-end 
-  - [ ] create TS types (or generate them)
-  - [ ] add related props to components
+   - [ ] mock GraphQL back-end 
+   - [ ] create TS types (or generate them)
+   - [ ] add related props to components
  - [ ] Set up routes
    - [ ] `/contact/:id/messages/(:messageId)`
    - [ ] `/contact/:id/edit`
@@ -35,23 +35,23 @@ yarn start
    - [ ] `/logout`
    - [ ] etc
  - [ ] Contact editing
-  - [ ] Add contact
-   - [ ] Verify contact number
-  - [ ] Remove contact with confirmation
+   - [ ] Add contact
+     - [ ] Verify contact number
+   - [ ] Remove contact with confirmation
 - [ ] Phone number editing
-  - [ ] Add phone number
-   - [ ] Verify phone number as available
-  - [ ] Remove phone number with confirmation
+   - [ ] Add phone number
+     - [ ] Verify phone number as available
+   - [ ] Remove phone number with confirmation
  - [ ] Settings editing
-  - [ ] Test API key
-  - [ ] Save API key
+   - [ ] Test API key
+   - [ ] Save API key
 - [ ] New message handling
-  - [ ] Scroll to bottom
-  - [ ] Animate new message
-  - [ ] Incoming message toast for contact if if user not on ``/contact/:id/messages/(:messageId)``
+   - [ ] Scroll to bottom
+   - [ ] Animate new message
+   - [ ] Incoming message toast for contact if if user not on ``/contact/:id/messages/(:messageId)``
  - [ ] Auth with cognito
  - [ ] Connect to AppSync API
  - [ ] Style / theme
-  - [ ] Set up theming
-  - [ ] User can select a theme
-  - [ ] Create default theme
+   - [ ] Set up theming
+   - [ ] User can select a theme
+   - [ ] Create default theme
