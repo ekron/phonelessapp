@@ -22,7 +22,7 @@ function App() {
 
   // Hooks:
   const [showSideMenu, setShowSideMenu] = useState(false);
-  const [showSettingsModal, setShowSettings] = useState(false);
+  const [showSettingsModal, setShowSettingsModal] = useState(false);
   const [showChooseYourNumberModal, setShowChooseYourNumberModal] = useState(
     false
   );
@@ -46,7 +46,7 @@ function App() {
   };
 
   const toggleSettingsModal = () => {
-    setShowSettings(!showSettingsModal);
+    setShowSettingsModal(!showSettingsModal);
   };
 
   const toggleLogoutModal = () => {
