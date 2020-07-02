@@ -55,6 +55,14 @@ function App() {
 
   return (
     <AppContainer>
+      {/* 
+        Sidemenu needs to be inside a div so we can use useOnClickOutside with it. 
+        Note that overflow on div is `hidden` too. Overflow is hidden in `AppContainer` and all its
+        parents aswell. Why? We need this hierarchy of "hidden" so we don't get unwanted 
+        scrollbars/overflow on parent elements. This may not work in iOS, in which case we'll need
+        body scroll lock of similar.
+      */
+      }
       <div style={{ overflow: "hidden" }} ref={elementContainingSideMenu}>
         <SideMenu show={showSideMenu}>
           <h1>
