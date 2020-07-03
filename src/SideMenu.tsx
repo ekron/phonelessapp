@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "@emotion/styled/macro";
+import { useOnClickOutside } from "./useOnClickOutside";
 
 const SideMenuContainer = styled.div<{ show: boolean }>`
   position: absolute;
@@ -20,10 +21,32 @@ const SideMenuContainer = styled.div<{ show: boolean }>`
 
 /**
  * When `show` is `true` this shows a menu taking up the left-hand 40% of the screen.
+ * 
+ * When the user clicks off the menu then `onClickOutside` is called.
  *
  * Use `children` to set the contents of the menu.
  */
-export const SideMenu: React.FC<{ show: boolean }> = ({ show, children }) => {
-  // TODO: Handle close boolean and add a slideout animation.
-  return <SideMenuContainer show={show}>{children}</SideMenuContainer>;
+export const SideMenu: React.FC<{
+  show: boolean;
+  onClickOutside: () => void;
+}> = ({ show, onClickOutside, children }) => {
+  // A reference to the node *containing* the sidemenu container
+  const elementContainingSideMenu = useRef(null);
+
+  // Custom hook to handle clicking outside the side elementContainingSideMenu.
+  // Up to the caller t handle onClickOutside and set the show variable.
+  useOnClickOutside({
+    elementToClickOutsideOf: elementContainingSideMenu,
+    onClickedOutsideElement: () => onClickOutside(),
+  });
+
+  // All parent elements of the sidemenu need to be `overflow: hidden`
+  // so a child element (some content in the sidemenu) can be `overflow: scroll`
+  // and things will work as expected -- the child element will happily scroll
+  // and there'll be no weird stray scroll bars on parent elements.
+  return (
+    <div style={{ overflow: "hidden" }} ref={elementContainingSideMenu}>
+      <SideMenuContainer show={show}>{children}</SideMenuContainer>
+    </div>
+  );
 };

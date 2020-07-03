@@ -1,10 +1,9 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 
 import { SideMenu } from "./SideMenu";
 import { ContactList } from "./ContactList";
 import { MessageList } from "./MessageList";
 import { MessageInput } from "./MessageInput";
-import { useOnClickOutside } from "./useOnClickOutside";
 import { AppContainer } from "./AppContainer";
 import { AppHeaderContainer } from "./AppHeaderContainer";
 import { MessagingSectionContainer } from "./MessagingSectionContainer";
@@ -19,7 +18,6 @@ import { Modal } from "./Modal";
  * Entry point for app.
  */
 function App() {
-
   // Hooks:
   const [showSideMenu, setShowSideMenu] = useState(false);
   const [showSettingsModal, setShowSettingsModal] = useState(false);
@@ -27,16 +25,9 @@ function App() {
     false
   );
   const [showLogoutModal, setShowLogoutModal] = useState(false);
-  const elementContainingSideMenu = useRef(null);
-
-  // Custom hook to handling clicking outside the side menu to close it:
-  useOnClickOutside({
-    elementToClickOutsideOf: elementContainingSideMenu,
-    onClickedOutsideElement: () => setShowSideMenu(false),
-  });
 
   // Menu item onClick handlers:
-  
+
   const toggleContactsSideMenu = () => {
     setShowSideMenu(!showSideMenu);
   };
@@ -55,23 +46,17 @@ function App() {
 
   return (
     <AppContainer>
-      {/* 
-        Sidemenu needs to be inside a div so we can use useOnClickOutside with it. 
-        Note that overflow on div is `hidden` too. Overflow is hidden in `AppContainer` and all its
-        parents aswell. Why? We need this hierarchy of "hidden" so we don't get unwanted 
-        scrollbars/overflow on parent elements. This may not work in iOS, in which case we'll need
-        body scroll lock of similar.
-      */
-      }
-      <div style={{ overflow: "hidden" }} ref={elementContainingSideMenu}>
-        <SideMenu show={showSideMenu}>
-          <h1>
-            Contacts <Button onClick={toggleContactsSideMenu}>Close</Button>
-          </h1>
-          <Button>+ add</Button>
-          <ContactList />
-        </SideMenu>
-      </div>
+      <SideMenu
+        show={showSideMenu}
+        onClickOutside={() => setShowSideMenu(false)}
+      >
+        <h1>
+          Contacts <Button onClick={toggleContactsSideMenu}>Close</Button>
+        </h1>
+        <Button>+ add</Button>
+        <ContactList />
+      </SideMenu>
+
       <Modal show={showChooseYourNumberModal}>
         <h1>
           Choose Your Number{" "}
