@@ -33,11 +33,12 @@ export const SideMenu: React.FC<{
   // A reference to the node *containing* the sidemenu container
   const elementContainingSideMenu = useRef(null);
 
-  // Custom hook to handle clicking outside the side elementContainingSideMenu.
-  // Up to the caller t handle onClickOutside and set the show variable.
+  // Custom hook to handle clicking outside the elementContainingSideMenu.
+  // Up to the caller to handle onClickOutside and set the show variable.
+  // But note we only call onClickOutside when the `show` is true.
   useOnClickOutside({
     elementToClickOutsideOf: elementContainingSideMenu,
-    onClickedOutsideElement: () => onClickOutside(),
+    onClickedOutsideElement: () => show && onClickOutside(),
   });
 
   // All parent elements of the sidemenu need to be `overflow: hidden`

@@ -48,7 +48,7 @@ function App() {
     <AppContainer>
       <SideMenu
         show={showSideMenu}
-        onClickOutside={() => setShowSideMenu(false)}
+        onClickOutside={toggleContactsSideMenu}
       >
         <h1>
           Contacts <Button onClick={toggleContactsSideMenu}>Close</Button>
