@@ -21,37 +21,52 @@ yarn start
    - [x] contact sidemenu with animation
    - [x] message list that scrolls to bottom
    - [x] config screens as modals
- - [ ] Mock up API
-   - [ ] mock GraphQL back-end 
-   - [ ] create TS types (or generate them)
-   - [ ] add related props to components
+ - [ ] Mock up API hooks
+   - [ ] Mock GraphQL back-end queries:
+     - [ ] replace all hard coded mock data with data from mock back-end:
+       - [ ] User info (name, selected phone number ...)
+       - [ ] Available numbers in `ChooseYourNumber`
+       - [ ] Available contacts in `ContactList`
+       - [ ] Messages related to a particular contact/phone number in `MessageList`
+    - [ ] create TS types for API types (or generate them?)
+    - [ ] Mock GraphQL mutations:
+      - [ ] CUD 
+      - [ ] CUD numbers
+      - [ ] CUD contacts
+      - [ ] SendMessage
+      - [ ] Update settings (e.g. add API Key)
+    - [ ] Mock GraphQL subscriptions:
+      - [ ] New message from contact
  - [ ] Set up routes
    - [ ] `/contact/:id/messages/(:messageId)`
    - [ ] `/contact/:id/edit`
    - [ ] `/chooseyourphonenumber`
    - [ ] `/chooseyourphonenumber/:phonenumber/edit`
    - [ ] `/settings `
-   - [ ] (default to this screen if no API key available?)
+     - [ ] (default to this screen if no API key available?)
    - [ ] `/logout`
-   - [ ] etc
- - [ ] Contact editing
+ - [ ] Integrate API hooks:
+   - [ ] create data containers for UI components and add hooks to them
+   - [ ] Update props for UI components to accept data from data containers
+ - [ ] Contact editing UI
    - [ ] Add contact
      - [ ] Verify contact number
    - [ ] Remove contact with confirmation
-- [ ] Phone number editing
+- [ ] Phone number editing UI
    - [ ] Add phone number
      - [ ] Verify phone number as available
    - [ ] Remove phone number with confirmation
- - [ ] Settings editing
+ - [ ] Settings editing UI
    - [ ] Test API key
    - [ ] Save API key
 - [ ] New message handling
    - [ ] Scroll to bottom
    - [ ] Animate new message
-   - [ ] Incoming message toast for contact if if user not on ``/contact/:id/messages/(:messageId)``
+   - [ ] Incoming message toast for contact if user not on ``/contact/:id/messages/(:messageId)``
  - [ ] Auth with cognito
  - [ ] Connect to AppSync API
  - [ ] Style / theme
    - [ ] Set up theming
-   - [ ] User can select a theme
    - [ ] Create default theme
+   - [ ] User can select a theme
+
