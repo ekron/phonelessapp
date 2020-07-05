@@ -11,20 +11,20 @@ export const useOnClickOutside = ({
   elementToClickOutsideOf: RefObject<any>;
   onClickedOutsideElement: () => void;
 }) => {
-  /**
-   * This adds a `mouseup` listener to the document and *ignores*
-   * all events with targets inside the `elementToClickOutsideOf`.
-   */
   useEffect(() => {
     const listener = (event: MouseEvent) => {
+      // With any tap/click on the document ...
       if (
         elementToClickOutsideOf.current &&
         elementToClickOutsideOf.current.contains(event.target)
       ) {
+        // If the target is contained inside the `elementToClickOutsideOf`...
         return;
       }
+      // ... we clicked outside the `elementToClickOutsideOf`, so:
       onClickedOutsideElement();
     };
+    // Add mouseup listener to *entire* document ...
     document.addEventListener("mouseup", listener);
     return () => {
       document.removeEventListener("mouseup", listener);

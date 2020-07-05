@@ -21,7 +21,7 @@ yarn start
    - [x] contact sidemenu with animation
    - [x] message list that scrolls to bottom
    - [x] config screens as modals
- - [ ] Mock up API hooks
+ - [ ] Mock up API hooks with SWR
    - [ ] Mock GraphQL back-end queries:
      - [ ] replace all hard coded mock data with data from mock back-end:
        - [ ] User info (name, selected phone number ...)
@@ -64,9 +64,10 @@ yarn start
    - [ ] Animate new message
    - [ ] Incoming message toast for contact if user not on ``/contact/:id/messages/(:messageId)``
  - [ ] Auth with cognito
+   - [ ] Add private routes
  - [ ] Connect to AppSync API
  - [ ] Style / theme
-   - [ ] Set up theming
+   - [ ] Set up theming with emotion-theming?
    - [ ] Create default theme
    - [ ] User can select a theme
 

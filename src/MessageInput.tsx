@@ -9,7 +9,8 @@ const Input = styled.textarea`
 `;
 
 /**
- * Input for messages. Might need extra code down the line.
+ * Message Input might need extra code down the line, so
+ * putting inside a component.
  */
 export const MessageInput: React.FC = () => {
   return <Input placeholder="Write a message ..." />;
