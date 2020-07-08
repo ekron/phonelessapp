@@ -56,7 +56,7 @@ function App() {
         <Button>+ add</Button>
         <ErrorBoundary message={"Cannot load contacts."}>
           <Suspense fallback={<Loading message="Loading contacts ..." />}>
-            <ContactList />
+            {showSideMenu && <ContactList />}
           </Suspense>
         </ErrorBoundary>
       </SideMenu>
@@ -69,7 +69,7 @@ function App() {
         <Button>+ add</Button>
         <ErrorBoundary message={"Cannot load phone numbers."}>
           <Suspense fallback={<Loading message="Loading phone numbers ..." />}>
-            <ChooseYourNumber />
+            {showChooseYourNumberModal && <ChooseYourNumber />}
           </Suspense>
         </ErrorBoundary>
       </Modal>
@@ -100,7 +100,7 @@ function App() {
       </AppHeaderContainer>
       <MessagingSectionContainer>
         <ErrorBoundary message={"Cannot load messages."}>
-          <Suspense fallback={<Loading message="Loading messages ..." />}>
+          <Suspense fallback={<Loading centre message="Loading messages ..." />}>
             <MessageList />
           </Suspense>
           <MessageInputSectionContainer>
