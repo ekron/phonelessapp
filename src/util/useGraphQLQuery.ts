@@ -74,7 +74,7 @@ async function graphQLFetch<D, V>({
  * It will also refresh from the server if there's a
  * network connection and:
  *
- * - if this hook is on the screen for 60 mins,
+ * - if this hook is on the screen for 20 mins,
  * - when this hook is "mounted";
  *   - e.g. when you navigate to a page in your app containing the hook;
  * - when a window containing the hook is re-focused;
@@ -105,7 +105,7 @@ export function useGraphQLQuery<D, V>({
   const result = useSWR(
     cacheKey,
     () => fetcher({ url, token, operationText, variables }),
-    { suspense, refreshInterval, dedupingInterval: 3000, revalidateOnMount: true }
+    { suspense, refreshInterval, dedupingInterval: 3000}
   );
 
   return result;
