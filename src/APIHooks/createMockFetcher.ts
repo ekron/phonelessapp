@@ -2,8 +2,6 @@ import { GraphQLOperationResponse, IFetcher } from "../util/types";
 
 /**
  * Used to mock out the mock fetchers to use with SWR.
- * 
- * (Those mock fetchers just fake a request to the back-end.)
  */
 export const createMockFetcher = <D, V>(
   opText: string,

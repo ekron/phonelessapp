@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled/macro";
 
-
 const Input = styled.textarea`
   border-radius: .5rem;
   width: 100%;
