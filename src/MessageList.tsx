@@ -1,6 +1,7 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, memo } from "react";
 import styled from "@emotion/styled/macro";
 import { Button } from "./Button";
+import { useMessagesQuery } from "./APIHooks/useMessagesQuery";
 
 const MessagesContainer = styled.ul`
   background-color: silver;
@@ -13,24 +14,21 @@ const MessagesContainer = styled.ul`
  * A list of messages. This automatically scrolls to the bottom
  * of the list and has a load more button at the top.
  */
-export const MessageList: React.FC = () => {
+export const MessageList: React.FC = memo(() => {
+  const { result } = useMessagesQuery({toAndFromContactId: "contact-id-to-come-from-route"});
   // Handing scrolling to the bottom of a the list of messages.
   const endOfMessages = useRef<HTMLDivElement>(null);
   const scrollToBottom = () => {
     if (endOfMessages.current)
       endOfMessages.current.scrollIntoView();
   };
-  // When this is receiving messages, this useEffect 
-  // should depend on messages prop.
-  useEffect(scrollToBottom, []); 
-
-  const mockMessages = Array.from(Array(40), (_, i) => <li>Message {39 - i}</li>);
+  useEffect(scrollToBottom, [result]); 
 
   return (
     <MessagesContainer>
       <Button>Load More</Button>
-      {mockMessages}
+      {result?.data.messages.map(message => <li key={message.id}>{message.content}</li>)}
       <div ref={endOfMessages} />
     </MessagesContainer>
   );
-};
+});

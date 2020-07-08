@@ -1,5 +1,6 @@
-import React from "react";
+import React, { memo } from "react";
 import styled from "@emotion/styled/macro";
+import { useContactsQuery } from "./APIHooks/useContactsQuery";
 
 const ContactListContainer = styled.ul`
   overflow-y: scroll;
@@ -7,10 +8,16 @@ const ContactListContainer = styled.ul`
 `;
 
 /**
- * A list of contacts -- probably names and phone numbers. 
+ * A list of contacts -- probably names and phone numbers.
  * Maybe avatars?
  */
-export const ContactList: React.FC = () => {
-  const mockContacts = Array.from(Array(30), (_, i) => <li>Contact {i}</li>);
-  return <ContactListContainer>{mockContacts}</ContactListContainer>;
-};
+export const ContactList: React.FC = memo(() => {
+  const { result } = useContactsQuery({ search: "" });
+  return (
+    <ContactListContainer>
+      {result?.data.contacts.map((contact) => (
+        <div key={contact.id}>{contact.name}</div>
+      ))}
+    </ContactListContainer>
+  );
+});

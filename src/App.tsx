@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 
 import { SideMenu } from "./SideMenu";
 import { ContactList } from "./ContactList";
@@ -13,6 +13,9 @@ import { Button } from "./Button";
 import { ChooseYourNumber } from "./ChooseYourNumber";
 import { Settings } from "./Settings";
 import { Modal } from "./Modal";
+import { ErrorBoundary } from "./ErrorBoundary";
+import { Loading } from "./Loading";
+import { Me } from "./Me";
 
 /**
  * Entry point for app.
@@ -46,15 +49,16 @@ function App() {
 
   return (
     <AppContainer>
-      <SideMenu
-        show={showSideMenu}
-        onClickOutside={toggleContactsSideMenu}
-      >
+      <SideMenu show={showSideMenu} onClickOutside={toggleContactsSideMenu}>
         <h1>
           Contacts <Button onClick={toggleContactsSideMenu}>Close</Button>
         </h1>
         <Button>+ add</Button>
-        <ContactList />
+        <ErrorBoundary message={"Cannot load contacts."}>
+          <Suspense fallback={<Loading message="Loading contacts ..." />}>
+            <ContactList />
+          </Suspense>
+        </ErrorBoundary>
       </SideMenu>
 
       <Modal show={showChooseYourNumberModal}>
@@ -63,7 +67,11 @@ function App() {
           <Button onClick={toggleChooseYourPhoneNumberModal}>Cancel</Button>
         </h1>
         <Button>+ add</Button>
-        <ChooseYourNumber />
+        <ErrorBoundary message={"Cannot load phone numbers."}>
+          <Suspense fallback={<Loading message="Loading phone numbers ..." />}>
+            <ChooseYourNumber />
+          </Suspense>
+        </ErrorBoundary>
       </Modal>
       <Modal show={showSettingsModal}>
         <h1>
@@ -81,17 +89,25 @@ function App() {
       <AppHeaderContainer>
         <AppHeaderItem onClick={toggleContactsSideMenu}>Contacts</AppHeaderItem>
         <AppHeaderItem onClick={toggleChooseYourPhoneNumberModal}>
-          Phone: 1234566789
+          <ErrorBoundary message="Cannot load user info">
+            <Suspense fallback={<Loading message="Loading user info ..." />}>
+              <Me />
+            </Suspense>
+          </ErrorBoundary>
         </AppHeaderItem>
         <AppHeaderItem onClick={toggleSettingsModal}>Settings</AppHeaderItem>
         <AppHeaderItem onClick={toggleLogoutModal}>Logout</AppHeaderItem>
       </AppHeaderContainer>
       <MessagingSectionContainer>
-        <MessageList />
-        <MessageInputSectionContainer>
-          <MessageInput />
-          <Button>Send</Button>
-        </MessageInputSectionContainer>
+        <ErrorBoundary message={"Cannot load messages."}>
+          <Suspense fallback={<Loading message="Loading messages ..." />}>
+            <MessageList />
+          </Suspense>
+          <MessageInputSectionContainer>
+            <MessageInput />
+            <Button>Send</Button>
+          </MessageInputSectionContainer>
+        </ErrorBoundary>
       </MessagingSectionContainer>
     </AppContainer>
   );

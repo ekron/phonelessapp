@@ -22,12 +22,12 @@ yarn start
    - [x] message list that scrolls to bottom
    - [x] config screens as modals
  - [ ] Mock up API hooks with SWR
-   - [ ] Mock GraphQL back-end queries:
-     - [ ] replace all hard coded mock data with data from mock back-end:
-       - [ ] User info (name, selected phone number ...)
-       - [ ] Available numbers in `ChooseYourNumber`
-       - [ ] Available contacts in `ContactList`
-       - [ ] Messages related to a particular contact/phone number in `MessageList`
+   - [x] Mock GraphQL back-end queries:
+     - [x] replace all hard coded mock data with data from mock back-end:
+       - [x] User info (name, selected phone number ...)
+       - [x] Available numbers in `ChooseYourNumber`
+       - [x] Available contacts in `ContactList`
+       - [x] Messages related to a particular contact/phone number in `MessageList`
     - [ ] create TS types for API types (or generate them?)
     - [ ] Mock GraphQL mutations:
       - [ ] CUD 
