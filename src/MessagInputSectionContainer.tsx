@@ -6,8 +6,8 @@ import styled from "@emotion/styled/macro";
 export const MessageInputSectionContainer = styled.div`
   background-color: orange;
   display: flex;
+  min-height: 4rem;
   width: 100%;
-  height: 4rem;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
